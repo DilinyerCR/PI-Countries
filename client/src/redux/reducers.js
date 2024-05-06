@@ -22,16 +22,24 @@ const reducer = (state = initialState, action) => {
             }
         
         case NEXT_PAGE:
-            return {
-                ...state,
-                currentPage: state.currentPage + 1,
-            };
+            if (state.currentPage >= 1 && state.currentPage < 25) {
+                return {
+                    ...state,
+                    currentPage: state.currentPage + 1,
+                };
+                } else {
+                    return state;
+                }
     
         case PREV_PAGE:
-            return {
-                ...state,
-                currentPage: state.currentPage - 1,
-            };
+            if (state.currentPage > 1 && state.currentPage <= 25) {
+                return {
+                    ...state,
+                    currentPage: state.currentPage - 1,
+                };
+                } else {    
+                    return state;
+                }
 
         case ORDER_BY_NAME:
             return {

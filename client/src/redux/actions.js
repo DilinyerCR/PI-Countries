@@ -1,6 +1,7 @@
 import { GET_ALL_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, FILTER_BY_CONTINENT, ORDER_BY_NAME, ORDER_BY_POPULATION, PREV_PAGE, FETCH_ACTIVITIES, ADD_ACTIVITY } from "./actions-types";
 
 
+
 export const getAllCountries = () => {
     return async (dispatch) => {
         try {
@@ -41,14 +42,27 @@ export const getCountryByName = (country) => {
 }
 
 
-export const nextPage = () => ({
-    type: NEXT_PAGE,
-});
+export const nextPage = () => {
+    return async (dispatch, getState) => {
+        const { currentPage } = getState();
+        if (currentPage >= 1 && currentPage < 25) {
+            dispatch({
+              type: NEXT_PAGE,
+            });
+        }
+    }
+};
 
-
-export const prevPage = () => ({
-    type: PREV_PAGE,
-});
+export const prevPage = () => {
+    return async (dispatch, getState) => {
+        const { currentPage } = getState();
+        if (currentPage >= 1 && currentPage < 25) {
+            dispatch({
+              type: PREV_PAGE,
+            });
+        }
+    }
+};
 
 
 export const orderByName = (orderOption) => {

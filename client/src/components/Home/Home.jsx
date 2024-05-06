@@ -9,6 +9,8 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.allActivities);
+  const currentPage = useSelector((state) => state.currentPage);
+
   
   useEffect(() => {
     if (window.location.pathname === "/home") {
@@ -64,7 +66,10 @@ const Home = () => {
         
         <div className={style.ButtonsContainer}>
           <button onClick={() => dispatch(prevPage())}>Anterior</button>
+          <p className={style.CurrentPage}>{currentPage} de 25</p>
+
           <button onClick={() => dispatch(nextPage())}>Siguiente</button>
+
         </div>
     </div>
   )
