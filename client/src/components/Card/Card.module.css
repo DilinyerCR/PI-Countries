@@ -1,0 +1,27 @@
+.CardMainContainer {
+    padding: 10px 20px;
+    min-width: 210px;
+    min-height: 260px;
+
+    max-width: 212px;
+    max-height: 262px;
+
+    background-color: rgb(245, 245, 245);
+    border-radius: 14px;
+    box-shadow: 0px 5px 10px 1px rgba(56,67,99,0.4);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.CardMainContainer img {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.CardMainContainer p {
+    color: rgb(5, 5, 75);
+}

@@ -1,0 +1,38 @@
+.HomeMainContainer {
+    padding: 50px;
+}
+
+.ButtonsContainer {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.ButtonsContainer button {
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: none;
+}
+
+.ButtonsContainer button:hover {
+    cursor: pointer;
+    background-color: rgb(232, 234, 240);
+}
+
+.FilterButtonsContainer {
+    margin: -28px 0 28px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.FilterButtonsContainer select {
+    padding: 2px 6px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+

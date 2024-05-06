@@ -1,0 +1,73 @@
+.SearchBarMainContainer {
+    padding-left: 280px;
+    height: 100px;
+
+    background: url('../../assets/Landing-wallpaper.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.InputMainContainer {
+    width: 360px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.InputMainContainer input {
+    padding: 2px 20px;
+    width: 80%;
+    height: 100%;
+
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border: none;
+    outline: none;
+}
+
+.InputMainContainer button {
+    padding: 0 10px 0 5px;
+    width: 20%;
+    height: 100%;
+
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-left-color: red;
+    border: none;
+
+    font-size: 1.5rem;
+}
+
+.SearchBarHomeButton {
+    width: 70px;
+    height: 36px;
+
+    border-radius: 18px;
+    border: none;
+}
+
+.NewActivityButton {
+    width: 140px;
+    height: 36px;
+
+    border-radius: 18px;
+    border: none;
+}
+
+.SearchBarHomeButton:hover, .NewActivityButton:hover, .InputMainContainer button:hover {
+    cursor: pointer;
+}
+
+.div1 {
+    border: 1px solid green;
+}
+

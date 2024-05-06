@@ -1,0 +1,120 @@
+.tourismActivityForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.Form {
+    margin: 50px auto;
+    padding: 30px 20px;
+    width: 500px;
+    
+    border-radius: 14px;
+    box-shadow: 0px 3px 23px -3px rgba(67, 98, 190, 0.596);
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.NameContainer, .DurationContainer, .SeasonContainer, .DifficultyContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.NameContainer input {
+    margin: 0 auto;
+    padding: 10px 12px;
+    width: 400px;
+
+    background-color: rgb(202, 223, 231);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.DurationContainer input {
+    margin: 0 auto;
+    padding: 7px 12px;
+    width: 400px;
+
+    background-color: rgb(202, 223, 231);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.DifficultyInputsContainer {
+    margin: 0 auto;
+    width: 400px;
+
+    display: flex;
+    gap: 30px;
+}
+
+.OptionContainer {
+    display: flex;
+    gap: 8px;
+}
+
+.OptionContainer input[type="radio"], .SeasonOptionsContainer input[type="radio"] {
+    -webkit-appearance: none; /* Remove default appearance */
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+    border: 2px solid #4f7cacbe; /* Blue border for unchecked state */
+    background-color: #fff; /* White background for unchecked state */
+    cursor: pointer;
+  }
+  
+.OptionContainer input[type="radio"]:checked {
+    background-color: #4f7cacbe; /* Green background for checked state */
+}
+
+.SeasonOptionsContainer {
+    margin: 0 auto;
+    width: 400px;
+
+    display: flex;
+    gap: 18px;
+}
+
+.SelectedCountriesContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ActivityButton {
+    margin: 10px auto;
+    padding: 10px 15px;
+    width: 80px;
+
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px 2px 4px -1px rgba(67, 98, 190, 0.5);
+}
+
+.ActivityButton:hover {
+    cursor: pointer;
+    background-color: rgb(202, 223, 231);
+}
+
+.CountriesContainer {
+    display: flex;
+    align-items: center;
+}
+
+.CountriesContainer select {
+    margin: 0 auto;
+    padding: 8px 12px;
+    width: 400px;
+
+    background-color: rgb(202, 223, 231);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}

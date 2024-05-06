@@ -1,0 +1,71 @@
+.LandingMainSection {
+    padding: 80px;
+    height: 100vh;
+
+    background: url('../../assets/Landing-wallpaper.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: white;
+
+    display: flex;
+}
+
+.LandingMainTiitle {
+    font-size: 8rem;
+}
+
+.LandingSecondTitle {
+    font-size: 3.4rem;
+}
+
+.LandingDescription {
+    margin-top: 30px;
+    max-width: 480px;
+    font-size: 2rem;
+}
+
+.LandingInfoContainer {
+    padding-left: 130px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.LandingButtonContainer {
+    margin-top: 50px;
+    align-self: center;
+}
+
+.LandingButtonContainer button {
+    padding: 14px 24px;
+
+    border-radius: 8px;
+    border: none;
+
+    font-size: 2rem;
+}
+
+.LandingButtonContainer button:hover {
+    cursor: pointer;
+}
+
+.LandingSocialMediaContainer {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.LandingSocialMediaContainer p {
+    font-size: 1.7rem;
+}
+
+.LandingSocialMediaContainer img {
+    width: 5rem;
+    height: 5rem;
+}
