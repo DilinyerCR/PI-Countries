@@ -13,8 +13,8 @@ countryModel(database);
 
 const { Activity, Country } = database.models;
 
-Country.belongsToMany(Activity, { through: 'CountryActivity' });
-Activity.belongsToMany(Country, { through: 'CountryActivity' });
+Country.belongsToMany(Activity, { through: 'CountryActivity', timestamps: false });
+Activity.belongsToMany(Country, { through: 'CountryActivity', timestamps: false });
 
 module.exports = {
     ...database.models,

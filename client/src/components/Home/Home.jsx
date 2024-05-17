@@ -2,7 +2,7 @@ import style from './Home.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cards from '../Cards/Cards';
-import { fetchActivities, filterByContinent, getAllCountries, nextPage, orderByName, orderByPopulation, prevPage } from '../../redux/actions';
+import { fetchActivities, filterByContinent, filterCountriesByActivity, getAllCountries, nextPage, orderByName, orderByPopulation, prevPage } from '../../redux/actions';
 
 
 const Home = () => {
@@ -11,18 +11,30 @@ const Home = () => {
   const allActivities = useSelector((state) => state.allActivities);
   const currentPage = useSelector((state) => state.currentPage);
 
+  const allCountries = useSelector((state) => state.allCountries)
+
   
   useEffect(() => {
-    if (window.location.pathname === "/home") {
+    if (window.location.pathname === "/home" || window.location.pathname === "/activity") {
       dispatch(getAllCountries());
     }
     dispatch(fetchActivities());
+    // console.log(allActivities);
   }, [dispatch]);
 
   const handleContinentChange = (e) => {
     const selectedContinent = e.target.value;
     dispatch(filterByContinent(selectedContinent));
   };
+
+  
+  const handleActivityChange = (e) => {
+    const selectedActivityId = e.target.value;
+    console.log("ID de la actividad seleccionada:", selectedActivityId);
+    // console.log(allCountries);
+    dispatch(filterCountriesByActivity(selectedActivityId));
+  };
+  
 
 
   return (
@@ -50,7 +62,7 @@ const Home = () => {
             <option value="Oceania">Oceania</option>
           </select>
 
-          <select name="ACTIVIDAD" id="">
+          <select name="ACTIVIDAD" id="" onChange={handleActivityChange}>
             <option value="ACTIVIDAD">ACTIVIDAD</option>
             {
               allActivities.map((activity) => (

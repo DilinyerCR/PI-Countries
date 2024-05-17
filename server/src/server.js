@@ -17,7 +17,7 @@ server.use((req, res, next) => {
     next();
 });
 
-server.use(express.json()); //Middleware
+server.use(express.json());  //Middleware
 // server.use(morgan('dev'));  //Middleware
 
 server.use('', router);

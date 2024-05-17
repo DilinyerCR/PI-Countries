@@ -1,5 +1,5 @@
 import style from './Activity.module.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { addActivity } from '../../redux/actions';
 
@@ -8,29 +8,39 @@ import { addActivity } from '../../redux/actions';
 const Activity = () => {
 
     const allCountries = useSelector(state => state.allCountries);
-    const [selectedCountries, setSelectedCountries] = useState([]);
-    
-    const countriesSelected = (e) => {
-        const selectedCountryId = e.target.value;
-        const selectedCountry = allCountries.find(country => country.id === selectedCountryId);
-        setSelectedCountries(prev => [...prev, selectedCountry]);
-    }
+    const [selectedCountryIds, setSelectedCountryIds] = useState([]);
+    const dispatch = useDispatch();
 
     const [activity, setActivity] = useState({
         name: '',
         difficulty: '',
         duration: '',
         season: '',
+        countryId: []
     });
 
     const handleInputChange = (e) => {
-        setActivity({
-           ...activity,
-            [e.target.name]: e.target.name === 'difficulty' || e.target.name === 'duration' || e.target.name === 'season'
-               ? parseInt(e.target.value, 10) // Convierte a número
-                : e.target.value // Si no es uno de los campos mencionados, deja como está
-        });
-        console.log(activity)
+        const { name, value } = e.target;
+        let newValue;
+
+        if (name === 'difficulty' || name === 'duration') {
+            newValue = parseInt(value, 10);
+        } else if (name === 'season') {
+            newValue = parseInt(value, 10);
+        } else if (name === 'countryId') {
+            newValue = [...selectedCountryIds, value];
+        } else {
+            newValue = value;
+        }
+
+        setActivity(prevState => ({
+           ...prevState,
+            [name]: newValue
+        }));
+
+        if (newValue && Array.isArray(newValue)) {
+            setSelectedCountryIds(newValue);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -41,15 +51,13 @@ const Activity = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(activity)
+                body: JSON.stringify({
+                    ...activity,
+                    countryIds: selectedCountryIds // Incluye ID de países
+                })
             });
-            if (!response.ok) {
-                throw new Error('Error al crear la actividad');
-            }
-            // Manejar la respuesta del servidor
-            // Por ejemplo, actualizar el estado de Redux con la nueva actividad
+
             dispatch(addActivity(activity));
-            // Limpia el formulario o realiza otras acciones necesarias
             console.log(activity)
         } catch (error) {
             console.error(error);
@@ -105,7 +113,7 @@ const Activity = () => {
                     <div className={style.SeasonOptionsContainer}>   
                         <div className={style.OptionContainer}>
                             <label htmlFor="verano">Verano</label>
-                            <input type="radio" id="verano" name="season" value="1" onChange={handleInputChange}value="1" onChange={handleInputChange}/>
+                            <input type="radio" id="verano" name="season" value="1" onChange={handleInputChange}/>
                         </div>
 
                         <div className={style.OptionContainer}>
@@ -126,15 +134,13 @@ const Activity = () => {
                 </div>
 
                 <div className={style.CountriesContainer}>
-                    <label htmlFor="">Pais</label>
-                    <select name="" id="" onChange={countriesSelected}>
-                        <option value="none">Elige tus paises</option>
+                    <label htmlFor="">País</label>
+                    <select name="countryId" id="countryId" onChange={handleInputChange}>
+                        <option value="">Elige tus países</option>
                         {allCountries?.map(country => (
-                            <option 
-                                key={country.id} 
-                                value={country.id}>
-                                    {country.name}
-                            </option>
+                        <option key={country.id} value={country.id}>
+                            {country.name}
+                        </option>
                         ))}
                     </select>
                 </div>
@@ -143,9 +149,10 @@ const Activity = () => {
                 <button className={style.ActivityButton} type="submit">CREAR</button>
 
                 <div className={style.SelectedCountriesContainer}>
-                    {selectedCountries.map((country, index) => (
-                        <p key={index}>{country.name}</p>
-                    ))}
+                    {selectedCountryIds.map((countryId, index) => {
+                        const countryName = allCountries.find(country => country.id === countryId)?.name;
+                        return <p key={index}>{countryName || countryId}</p>;
+                    })}
                 </div>
 
             </form>

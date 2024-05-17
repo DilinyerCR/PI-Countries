@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, FILTER_BY_CONTINENT, ORDER_BY_NAME, ORDER_BY_POPULATION, PREV_PAGE, FETCH_ACTIVITIES, ADD_ACTIVITY } from "./actions-types";
+import { GET_ALL_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, FILTER_BY_CONTINENT, ORDER_BY_NAME, ORDER_BY_POPULATION, PREV_PAGE, FETCH_ACTIVITIES, ADD_ACTIVITY, FILTER_COUNTRIES_BY_ACTIVITY } from "./actions-types";
 
 
 
@@ -147,3 +147,20 @@ export const addActivity = (activity) => ({
     type: ADD_ACTIVITY,
     payload: activity
 });
+
+
+export const filterCountriesByActivity = (activityId) => {
+    return async (dispatch, getState) => {
+        const { allActivities } = getState();
+        const activity = allActivities.find(activity => String(activity.id) === activityId); // !Se pasa a String el ID para que sea igual al ID recibido por argumento, no me funcionaba por eso.
+        
+        if (activity) {
+            console.log("Países de la actividad:", activity.Countries);
+            dispatch({
+                type: FILTER_COUNTRIES_BY_ACTIVITY,
+                payload: activity.Countries
+            });
+        }
+    }; 
+};
+  
